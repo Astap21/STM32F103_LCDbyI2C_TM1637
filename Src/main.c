@@ -81,30 +81,30 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-//  MX_I2C1_Init();
+  MX_I2C1_Init();
   MX_RTC_Init();
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
 
   /* USER CODE BEGIN 2 */
-//  LCD_ini();
-//	sprintf(str,"Stm32F407VG");
-//	LCD_String(str);
-//	LCD_SetPos(10, 2);
-//	sprintf(str,"ARM mc");
-//	LCD_String(str);
-//	HAL_Delay(2000);
-//	LCD_Clear();
-//	LCD_SetPos(4, 0);
-//	LCD_SendChar('s');
-//	LCD_SetPos(8, 1);
-//	LCD_SendChar('t');
-//	LCD_SetPos(12, 2);
-//	LCD_SendChar('m');
-//	LCD_SetPos(16, 3);
-//	LCD_SendChar('3');
-//	LCD_SendChar('2');
-//	HAL_Delay(2000);
+  LCD_ini();
+	sprintf(str,"Stm32F407VG");
+	LCD_String(str);
+	LCD_SetPos(10, 2);
+	sprintf(str,"ARM mc");
+	LCD_String(str);
+	HAL_Delay(2000);
+	LCD_Clear();
+	LCD_SetPos(4, 0);
+	LCD_SendChar('s');
+	LCD_SetPos(8, 1);
+	LCD_SendChar('t');
+	LCD_SetPos(12, 2);
+	LCD_SendChar('m');
+	LCD_SetPos(16, 3);
+	LCD_SendChar('3');
+	LCD_SendChar('2');
+	HAL_Delay(2000);
 	
 	tm1637Init();
   // Optionally set brightness. 0 is off. By default, initialized to full brightness.
