@@ -1,6 +1,6 @@
 #include "stm32f1xx_hal.h"
 
-#include "stm32_tm1637.h"
+#include "tm1637.h"
 
 
 void _tm1637Start(void);
@@ -11,6 +11,7 @@ void _tm1637ClkHigh(void);
 void _tm1637ClkLow(void);
 void _tm1637DioHigh(void);
 void _tm1637DioLow(void);
+void _tm1637DelayUs(uint32_t DelayUs);
 
 // Configuration.
 
@@ -20,6 +21,8 @@ void _tm1637DioLow(void);
 #define DIO_PIN GPIO_PIN_15
 #define CLK_PORT_CLK_ENABLE __HAL_RCC_GPIOC_CLK_ENABLE
 #define DIO_PORT_CLK_ENABLE __HAL_RCC_GPIOC_CLK_ENABLE
+// microcontroller frequency
+#define FREQ HAL_RCC_GetHCLKFreq()
 
 
 const char segmentMap[] = {
@@ -47,12 +50,22 @@ const char segmentMap[] = {
 //	uint8_t
 //	uint8_t
 //};
-
+void _tm1637DelayUs(uint32_t DelayUs){
+	uint32_t tickOneUs = 1;
+	if (FREQ<1000000) {
+		tickOneUs = 1;
+	}
+	else{
+		tickOneUs = FREQ/1000000;
+	}
+	uint32_t tickDelay = DelayUs*tickOneUs;
+	while(tickDelay !=0 )tickDelay--;
+}
 void tm1637Init(void)
 {
     CLK_PORT_CLK_ENABLE();
     DIO_PORT_CLK_ENABLE();
-    GPIO_InitTypeDef g = {0};
+    GPIO_InitTypeDef g;
     g.Pull = GPIO_PULLUP;
     g.Mode = GPIO_MODE_OUTPUT_OD; // OD = open drain
     g.Speed = GPIO_SPEED_FREQ_HIGH;
@@ -137,28 +150,28 @@ void _tm1637Start(void)
 {
     _tm1637ClkHigh();
     _tm1637DioHigh();
-    HAL_Delay(2);
+    _tm1637DelayUs(2);
     _tm1637DioLow();
 }
 
 void _tm1637Stop(void)
 {
     _tm1637ClkLow();
-    HAL_Delay(2);
+    _tm1637DelayUs(2);
     _tm1637DioLow();
-    HAL_Delay(2);
+    _tm1637DelayUs(2);
     _tm1637ClkHigh();
-    HAL_Delay(2);
+    _tm1637DelayUs(2);
     _tm1637DioHigh();
 }
 
 void _tm1637ReadResult(void)
 {
     _tm1637ClkLow();
-    HAL_Delay(5);
+    _tm1637DelayUs(5);
     // while (dio); // We're cheating here and not actually reading back the response.
     _tm1637ClkHigh();
-    HAL_Delay(2);
+    _tm1637DelayUs(2);
     _tm1637ClkLow();
 }
 
@@ -172,10 +185,10 @@ void _tm1637WriteByte(unsigned char b)
         else {
             _tm1637DioLow();
         }
-        HAL_Delay(3);
+        _tm1637DelayUs(3);
         b >>= 1;
         _tm1637ClkHigh();
-        HAL_Delay(3);
+        _tm1637DelayUs(3);
     }
 }
 void _tm1637ClkHigh(void)
@@ -197,3 +210,4 @@ void _tm1637DioLow(void)
 {
     HAL_GPIO_WritePin(DIO_PORT, DIO_PIN, GPIO_PIN_RESET);
 }
+
