@@ -61,7 +61,13 @@ void Error_Handler(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+class ABC{
+	public:
+	ABC(int a_){
+	 a = a_;
+	}
+	int a;
+};
 /* USER CODE END 0 */
 
 int main(void)
@@ -70,7 +76,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
   char str[100];
   /* USER CODE END 1 */
-
+  ABC qwer(11);
   /* MCU Configuration----------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */

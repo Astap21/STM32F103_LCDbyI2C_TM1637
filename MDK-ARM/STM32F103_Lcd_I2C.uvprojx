@@ -331,7 +331,7 @@
             <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <VariousControls>
-              <MiscControls>--C99</MiscControls>
+              <MiscControls>--cpp</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
               <IncludePath>../Inc; ../Drivers/STM32F1xx_HAL_Driver/Inc; ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32F1xx/Include; ../Drivers/CMSIS/Include</IncludePath>
@@ -473,9 +473,9 @@
           <GroupName>Application/User</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/main.c</FilePath>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>../Src/main.cpp</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
@@ -516,6 +516,11 @@
               <FileName>stm32_tm1637.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32_tm1637.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyAstCpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\MyAstCpp.cpp</FilePath>
             </File>
           </Files>
         </Group>

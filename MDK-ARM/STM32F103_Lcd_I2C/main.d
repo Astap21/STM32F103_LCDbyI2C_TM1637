@@ -1,4 +1,4 @@
-stm32f103_lcd_i2c\main.o: ../Src/main.c
+stm32f103_lcd_i2c\main.o: ../Src/main.cpp
 stm32f103_lcd_i2c\main.o: ../Inc/main.h
 stm32f103_lcd_i2c\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 stm32f103_lcd_i2c\main.o: ../Inc/stm32f1xx_hal_conf.h

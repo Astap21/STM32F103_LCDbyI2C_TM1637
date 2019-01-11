@@ -25,6 +25,7 @@
 "stm32f103_lcd_i2c\usart.o"
 "stm32f103_lcd_i2c\lcd.o"
 "stm32f103_lcd_i2c\stm32_tm1637.o"
+"stm32f103_lcd_i2c\myastcpp.o"
 "stm32f103_lcd_i2c\system_stm32f1xx.o"
 --library_type=microlib --strict --scatter "STM32F103_Lcd_I2C\STM32F103_Lcd_I2C.sct"
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
